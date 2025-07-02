@@ -1,2 +1,42 @@
-Ansible file created to practise git on 28-06-2025
-Will try to commit this changes into central repo mindcircuit
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Repo') {
+            steps {
+                git url: 'https://github.com/Ramasubhash/mindcircuit.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo '🔨 Building the project...'
+                // Put your build commands here (e.g., mvn clean install)
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo '🧪 Running tests...'
+                // Simulated test command
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo '🚀 Deploying application...'
+                // Simulated deploy command
+            }
+        }
+    }
+
+    post {
+        success {
+            echo '✅ Pipeline completed successfully!'
+        }
+        failure {
+            echo '❌ Pipeline failed. Check logs.'
+        }
+    }
+}
+
